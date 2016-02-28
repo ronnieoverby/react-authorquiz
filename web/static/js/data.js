@@ -42,17 +42,20 @@ import _ from 'lodash';
     data.selectGame = function(){
         var books = _.shuffle(this.reduce((p,c,i) => {
             return p.concat(c.books);
-        }, [])).slice(0,4);
+        }, [])).slice(0,5);
 
         var answer = books[_.random(books.length-1)];
 
         var author = _.find(this, author => {
             return author.books.some(title => title === answer);
-        });
+        });        
 
         return {
             books,
-            author
+            author,
+            checkAnswer(title) {
+                return this.author.books.some(t => t === title);
+            }
         };
     };
 

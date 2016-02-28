@@ -4,9 +4,13 @@ const Book = React.createClass({
 	propTypes: {
 		title: React.PropTypes.string.isRequired
 	},
+	handleClick(){
+		let {onBookSelected, title} = this.props;
+		onBookSelected(title);
+	},
 	render(){
 		return (
-			<div className="answer">
+			<div onClick={this.handleClick} className="answer">
 				<h4>{this.props.title}</h4>
 			</div>
 		);
