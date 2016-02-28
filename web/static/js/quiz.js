@@ -3,16 +3,28 @@ import ReactDOM from "react-dom";
 import Book from "web/static/js/book";
 
 const Quiz = React.createClass({
-	propTypes:{
-		books: React.PropTypes.arrayOf(React.PropTypes.node).isRequired
+	getInitialState(){
+		return this.props.data.selectGame();
 	},
 	render() {
 
-		let books = this.props.books.map(b => <Book title={b} />)
+		let	{author} = this.state,
+			books = this.state.books.map(b => <Book title={b} />);
 
 		return (
 			<div>
-				{books}
+				<div className="row">
+
+					<div className="col-md-4">
+						<img src={author.imageUrl} className="authorimage col-md-3" />						
+					</div>
+					<div className="col-md-7">
+						{books}
+					</div>
+					<div className="col-md-1">
+					</div>
+
+				</div>
 			</div>
 		);
 	}

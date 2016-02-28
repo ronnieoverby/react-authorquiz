@@ -22,8 +22,10 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 import React from "React";
 import ReactDOM from "react-dom";
 import Quiz from "web/static/js/quiz";
+import data from "web/static/js/data";
+
 
 ReactDOM.render(
-  <Quiz books={['LOTR','War n Peace']} />,
-  document.getElementById('main')
+  <Quiz data={data} />,
+  document.getElementById('app')
 );

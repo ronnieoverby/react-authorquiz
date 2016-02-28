@@ -6,8 +6,8 @@ const Book = React.createClass({
 	},
 	render(){
 		return (
-			<div>
-			<h4>{this.props.title}</h4>
+			<div className="answer">
+				<h4>{this.props.title}</h4>
 			</div>
 		);
 	}
