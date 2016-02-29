@@ -20,12 +20,18 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 
 // import socket from "./socket"
 import React from "React";
-import ReactDOM from "react-dom";
+import {render} from "react-dom";
 import Quiz from "web/static/js/quiz";
+import AddGameForm from "web/static/js/addGameForm";
 import data from "web/static/js/data";
+import { Router, Route, hashHistory } from "react-router";
 
 
-ReactDOM.render(
-  <Quiz data={data} />,
-  document.getElementById('app')
-);
+let appEl = document.getElementById('app');
+
+render((
+	<Router history={hashHistory}>
+		<Route path="/" component={ () => <Quiz data={data} /> } />
+		<Route path="/add" component={() => <AddGameForm /> } />
+	</Router>
+), appEl);

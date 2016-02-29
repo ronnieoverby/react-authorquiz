@@ -1,6 +1,8 @@
 import React from "React";
 import ReactDOM from "react-dom";
+import {Link} from "react-router";
 import Book from "web/static/js/book";
+import Col from "web/static/js/col";
 
 const Quiz = React.createClass({
 	getInitialState(){
@@ -8,7 +10,7 @@ const Quiz = React.createClass({
 		return {
 			showContinue: false,
 			bgClass: 'neutral',
-			...this.props.data.selectGame() // not working but shoudl....
+			...this.props.data.selectGame()
 		};
 	},
 	handleBookSelected(title) {
@@ -21,21 +23,25 @@ const Quiz = React.createClass({
 	handleContinue(){
 		this.setState(this.getInitialState());
 	},
+	handleAddGame(){
+		console.log('add game clicked');
+	},
 	render() {
 
 		let	{author, bgClass, books, showContinue} = this.state;
-		books = books.map(b => <Book onBookSelected={this.handleBookSelected} title={b} />);
+		books = books.map(b => <Book onBookSelected={this.handleBookSelected} title={b}
+									 key={b} />);
 
 		let continueFrame = <span />
 
 		if (showContinue) {
 			continueFrame = (
 				<div className="row">
-					<div className="col-md-12">
+					<Col md="12">
 						<input onClick={this.handleContinue}
 								type="button" className="btn btn-primary pull-right"
 								value="Continue" />
-					</div>
+					</Col>
 				</div>
 			);
 		}
@@ -44,18 +50,25 @@ const Quiz = React.createClass({
 			<div>
 				<div className="row">
 
-					<div className="col-md-4">
+					<Col md="4">
 						<h4>What book did <b>{author.name}</b> write?</h4>
 						<img src={author.imageUrl} className="authorimage col-md-3" />						
-					</div>
-					<div className="col-md-7">
+					</Col>
+					<Col md="7">
 						{books}
-					</div>
-					<div className={`col-md-1 ${bgClass}`}>
-					</div>
+					</Col>
+					<Col md="1" className={bgClass}>
+					</Col>
 
 				</div>
+				
 				{continueFrame}
+
+				<div className="row">
+					<Col md="12">
+						<Link to="/add" className="btn btn-primary">Add Game</Link>
+					</Col>			
+				</div>
 			</div>
 		);
 	}

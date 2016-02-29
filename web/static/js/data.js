@@ -42,7 +42,7 @@ import _ from 'lodash';
     data.selectGame = function(){
         var books = _.shuffle(this.reduce((p,c,i) => {
             return p.concat(c.books);
-        }, [])).slice(0,5);
+        }, [])).slice(0,4);
 
         var answer = books[_.random(books.length-1)];
 
