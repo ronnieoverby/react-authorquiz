@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import ReactDOM from "react-dom";
 import {Link} from "react-router";
 import Book from "web/static/js/book";

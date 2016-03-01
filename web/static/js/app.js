@@ -19,7 +19,7 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-import React from "React";
+import React from "react";
 import {render} from "react-dom";
 import Quiz from "web/static/js/quiz";
 import AddGameForm from "web/static/js/addGameForm";
@@ -32,6 +32,6 @@ let appEl = document.getElementById('app');
 render((
 	<Router history={hashHistory}>
 		<Route path="/" component={ () => <Quiz data={data} /> } />
-		<Route path="/add" component={() => <AddGameForm /> } />
+		<Route path="/add" component={() => <AddGameForm onGameFormSubmitted={data => console.log(data)} /> } />
 	</Router>
 ), appEl);

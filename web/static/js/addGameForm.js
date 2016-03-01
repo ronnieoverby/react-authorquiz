@@ -1,13 +1,21 @@
-import React from "React";
+import React from "react";
 import ReactDOM from "react-dom";
 import Col from "web/static/js/col";
 
 export default React.createClass({
+	propTypes:{
+		onGameFormSubmitted: React.PropTypes.func.isRequired
+	},
 	handleSubmit(){
-		let data = {
-			imageUrl: this.refs.imageUrl.getDOMNode().value
-		};
-		console.dir(data);
+
+		let {refs,props} = this;
+		let data = Object.keys(refs)
+			.reduce((p,c) => {
+				p[c] = refs[c].value;
+				return p;
+			}, {});
+
+		props.onGameFormSubmitted(data);
 		return false;
 	},
 	render(){
